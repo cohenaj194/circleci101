@@ -10,6 +10,9 @@ jobs:
     steps:
       - checkout
       - run:  
+          name: setup
+          command: ~/project/ci/setup-env
+      - run:  
           name: rspec
           command: ~/project/rspec.sh
       - run: 
