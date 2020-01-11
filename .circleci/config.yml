@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:  
           name: setup
-          command: ~/project/ci/setup-env
+          command: ~/project/ci/setup-env.sh
       - run:  
           name: rspec
           command: ~/project/rspec.sh
