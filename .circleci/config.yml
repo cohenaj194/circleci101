@@ -18,6 +18,16 @@ jobs:
     steps:
       - checkout
       - run: ~/project/rubocop.sh
+  basic_shellcheck:
+    docker:
+      - image: koalaman/shellcheck-alpine:stable
+    steps:
+      - checkout
+      - run:
+          name: Check Scripts
+          command: |
+            find . -type f -name '*.sh' | wc -l
+            find . -type f -name '*.sh' | xargs shellcheck --external-sources
 workflows:
   version: 2
   ruby_tests:
@@ -26,4 +36,5 @@ workflows:
       - rubocop
   shellcheck:
     jobs:
-      - shellcheck
+      - basic_shellcheck
+      - shellcheck/check
