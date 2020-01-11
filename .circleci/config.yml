@@ -3,12 +3,16 @@ jobs:
   rspec:
     docker:
       - image: circleci/ruby:2.6.0-node
+        environment:
+          BUNDLER_VERSION: 2.0.0
     steps:
       - checkout
       - run: ~/project/rspec.sh
   rubocop:
     docker:
       - image: circleci/ruby:2.6.0-node
+        environment:
+          BUNDLER_VERSION: 2.0.0
     steps:
       - checkout
       - run: ~/project/rubocop.sh
