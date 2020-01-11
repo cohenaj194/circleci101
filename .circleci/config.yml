@@ -5,15 +5,17 @@ jobs:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
-      - run: find . -name circleci101
-      # - run: rspec.sh
+      - run: gem install bundler
+      - run: bundle install
+      - run: ~/project/rspec.sh
   rubocop:
     docker:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
-      - run: find . -name circleci101
-      # - run: rubocop.sh
+      - run: gem install bundler
+      - run: bundle install
+      - run: ~/project/rubocop.sh
 workflows:
   version: 2
   one_and_two:
