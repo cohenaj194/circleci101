@@ -15,6 +15,9 @@ jobs:
       - run:  
           name: rspec
           command: ~/project/rspec.sh
+      - run:  
+          name: rspec
+          command: bundle exec rspec
       - run: 
           name: rubocop
           command: ~/project/rubocop.sh
