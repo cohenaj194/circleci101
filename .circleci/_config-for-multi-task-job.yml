@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  script_checks:
+    docker:
+      - image: circleci/ruby:2.6.0-node
+        environment:
+          BUNDLER_VERSION: 2.0.0
+    # everything under steps runs in the same container
+    steps:
+      - checkout
+      - run:  
+          name: setup
+          command: ~/project/ci/setup-env.sh
+      - run:  
+          name: rspec
+          command: ~/project/rspec.sh
+      - run:  
+          name: rspec
+          command: bundle exec rspec
+      - run: 
+          name: rubocop
+          command: ~/project/rubocop.sh
+      - run:
+          name: Check Scripts
+          command: |
+            find . -type f -name '*.sh' | wc -l
+            find . -type f -name '*.sh' | xargs shellcheck --external-sources
+workflows:
+  version: 2
+  verify_scripts:
+    jobs:
+      - script_checks
